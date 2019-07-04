@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.SQLException;
 
 import db.DB;
+import db.DbIntegrityException;
 
 public class Programa {
 
@@ -25,7 +26,7 @@ public class Programa {
 			System.out.println("Feito (done)! Linhas afetadas: " + rowsAffected);	
 		}
 		catch (SQLException e) {
-			e.printStackTrace();
+			throw new DbIntegrityException (e.getMessage());
 		}
 		finally {
 			DB.closeStatement(st);
